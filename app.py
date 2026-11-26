@@ -65,7 +65,7 @@ def init_db():
     if HEAD_PASSWORD:
         cursor.execute(
             'INSERT OR REPLACE INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?)',
-            (HEAD_OFFICIAL_EMAIL.lower(), 'مقرر القسم', generate_password_hash(HEAD_PASSWORD), 'head'))
+            (HEAD_OFFICIAL_EMAIL.lower(), '\u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645', generate_password_hash(HEAD_PASSWORD), 'head'))
     else:
         print('WARNING: HEAD_PASSWORD is not set; the department head cannot log in.')
     conn.commit()
@@ -74,21 +74,21 @@ def init_db():
 init_db()
 
 COLLEGE_DEPARTMENTS = [
-    {"name": "قسم التربية الفنية", "icon": "🎨", "desc": "منارة الفن التعبيري وجماليات التربية الحية"},
-    {"name": "قسم الفنون الموسيقية", "icon": "🎵", "desc": "أصالة النغم، الإيقاع، والتذوق الصوتي الرفيع"},
-    {"name": "قسم الخط العربي والزخرفة", "icon": "✒️", "desc": "هندسة الحرف العربي وإشراقات الزخرفة الإسلامية"},
-    {"name": "قسم الفنون التشكيلية", "icon": "🖼️", "desc": "عراقة الرسم، النحت، والتشكيل الجداري المعاصر"},
-    {"name": "قسم الفنون المسرحية", "icon": "🎭", "desc": "خشبة الإبداع، التمثيل، والإخراج المسرحي الرقمي"},
-    {"name": "قسم الفنون السينمائية والتلفزيونية", "icon": "🎬", "desc": "السينما التفاعلية، الإخراج التلفزيوني والوسائط"},
-    {"name": "قسم التصميم", "icon": "✏️", "desc": "هندسة الفضاء البصري، التصميم الداخلي والصناعي"}
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u0641\u0646\u064a\u0629", "icon": "\U0001f3a8", "desc": "\u0645\u0646\u0627\u0631\u0629 \u0627\u0644\u0641\u0646 \u0627\u0644\u062a\u0639\u0628\u064a\u0631\u064a \u0648\u062c\u0645\u0627\u0644\u064a\u0627\u062a \u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u062d\u064a\u0629"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u0645\u0648\u0633\u064a\u0642\u064a\u0629", "icon": "\U0001f3b5", "desc": "\u0623\u0635\u0627\u0644\u0629 \u0627\u0644\u0646\u063a\u0645\u060c \u0627\u0644\u0625\u064a\u0642\u0627\u0639\u060c \u0648\u0627\u0644\u062a\u0630\u0648\u0642 \u0627\u0644\u0635\u0648\u062a\u064a \u0627\u0644\u0631\u0641\u064a\u0639"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u062e\u0637 \u0627\u0644\u0639\u0631\u0628\u064a \u0648\u0627\u0644\u0632\u062e\u0631\u0641\u0629", "icon": "\u2712\ufe0f", "desc": "\u0647\u0646\u062f\u0633\u0629 \u0627\u0644\u062d\u0631\u0641 \u0627\u0644\u0639\u0631\u0628\u064a \u0648\u0625\u0634\u0631\u0627\u0642\u0627\u062a \u0627\u0644\u0632\u062e\u0631\u0641\u0629 \u0627\u0644\u0625\u0633\u0644\u0627\u0645\u064a\u0629"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u062a\u0634\u0643\u064a\u0644\u064a\u0629", "icon": "\U0001f5bc\ufe0f", "desc": "\u0639\u0631\u0627\u0642\u0629 \u0627\u0644\u0631\u0633\u0645\u060c \u0627\u0644\u0646\u062d\u062a\u060c \u0648\u0627\u0644\u062a\u0634\u0643\u064a\u0644 \u0627\u0644\u062c\u062f\u0627\u0631\u064a \u0627\u0644\u0645\u0639\u0627\u0635\u0631"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u0645\u0633\u0631\u062d\u064a\u0629", "icon": "\U0001f3ad", "desc": "\u062e\u0634\u0628\u0629 \u0627\u0644\u0625\u0628\u062f\u0627\u0639\u060c \u0627\u0644\u062a\u0645\u062b\u064a\u0644\u060c \u0648\u0627\u0644\u0625\u062e\u0631\u0627\u062c \u0627\u0644\u0645\u0633\u0631\u062d\u064a \u0627\u0644\u0631\u0642\u0645\u064a"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u0633\u064a\u0646\u0645\u0627\u0626\u064a\u0629 \u0648\u0627\u0644\u062a\u0644\u0641\u0632\u064a\u0648\u0646\u064a\u0629", "icon": "\U0001f3ac", "desc": "\u0627\u0644\u0633\u064a\u0646\u0645\u0627 \u0627\u0644\u062a\u0641\u0627\u0639\u0644\u064a\u0629\u060c \u0627\u0644\u0625\u062e\u0631\u0627\u062c \u0627\u0644\u062a\u0644\u0641\u0632\u064a\u0648\u0646\u064a \u0648\u0627\u0644\u0648\u0633\u0627\u0626\u0637"},
+    {"name": "\u0642\u0633\u0645 \u0627\u0644\u062a\u0635\u0645\u064a\u0645", "icon": "\u270f\ufe0f", "desc": "\u0647\u0646\u062f\u0633\u0629 \u0627\u0644\u0641\u0636\u0627\u0621 \u0627\u0644\u0628\u0635\u0631\u064a\u060c \u0627\u0644\u062a\u0635\u0645\u064a\u0645 \u0627\u0644\u062f\u0627\u062e\u0644\u064a \u0648\u0627\u0644\u0635\u0646\u0627\u0639\u064a"}
 ]
 
-STAGE_ORDER = ['المرحلة الأولى', 'المرحلة الثانية', 'المرحلة الثالثة', 'المرحلة الرابعة']
-SHIFTS = ('صباحي', 'مسائي')
+STAGE_ORDER = ['\u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u0649', '\u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u062b\u0627\u0646\u064a\u0629', '\u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u062b\u0627\u0644\u062b\u0629', '\u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u0631\u0627\u0628\u0639\u0629']
+SHIFTS = ('\u0635\u0628\u0627\u062d\u064a', '\u0645\u0633\u0627\u0626\u064a')
 FULL_COLLEGE_DATA = {}
 
 def _ar_key(s):
-    return s.translate(str.maketrans('أإآىة', 'ااايه'))
+    return s.translate(str.maketrans('\u0623\u0625\u0622\u0649\u0629', '\u0627\u0627\u0627\u064a\u0647'))
 
 def _sort_tree(tree):
     out = {}
@@ -127,9 +127,9 @@ def build_students_xlsx(rows):
     from openpyxl.styles import Font, PatternFill, Alignment
     wb = Workbook()
     ws = wb.active
-    ws.title = 'الطلبة'
+    ws.title = '\u0627\u0644\u0637\u0644\u0628\u0629'
     ws.sheet_view.rightToLeft = True
-    ws.append(['القسم', 'الدراسة', 'المرحلة', 'الشعبة', 'الاسم'])
+    ws.append(['\u0627\u0644\u0642\u0633\u0645', '\u0627\u0644\u062f\u0631\u0627\u0633\u0629', '\u0627\u0644\u0645\u0631\u062d\u0644\u0629', '\u0627\u0644\u0634\u0639\u0628\u0629', '\u0627\u0644\u0627\u0633\u0645'])
     for c in ws[1]:
         c.font = Font(name='Arial', bold=True, color='FFFFFF')
         c.fill = PatternFill('solid', fgColor='B45309')
@@ -143,13 +143,13 @@ def build_students_xlsx(rows):
             c.font = Font(name='Arial')
     ws.freeze_panes = 'A2'
     ws.auto_filter.ref = ws.dimensions
-    info = wb.create_sheet('تعليمات')
+    info = wb.create_sheet('\u062a\u0639\u0644\u064a\u0645\u0627\u062a')
     info.sheet_view.rightToLeft = True
-    for line in ['كل صف في ورقة "الطلبة" يمثل طالباً واحداً.',
-                 'الأعمدة الخمسة مطلوبة وبهذا الترتيب: القسم، الدراسة، المرحلة، الشعبة، الاسم.',
-                 'القسم يجب أن يطابق اسمه في المنظومة تماماً. الدراسة: صباحي أو مسائي.',
-                 'المرحلة مثل: المرحلة الأولى. الشعبة مثل: الشعبة (أ).',
-                 'ارفع الملف من لوحة المقرر > إدارة الطلبة. الصف الأول (العناوين) يُتجاهل.']:
+    for line in ['\u0643\u0644 \u0635\u0641 \u0641\u064a \u0648\u0631\u0642\u0629 "\u0627\u0644\u0637\u0644\u0628\u0629" \u064a\u0645\u062b\u0644 \u0637\u0627\u0644\u0628\u0627\u064b \u0648\u0627\u062d\u062f\u0627\u064b.',
+                 '\u0627\u0644\u0623\u0639\u0645\u062f\u0629 \u0627\u0644\u062e\u0645\u0633\u0629 \u0645\u0637\u0644\u0648\u0628\u0629 \u0648\u0628\u0647\u0630\u0627 \u0627\u0644\u062a\u0631\u062a\u064a\u0628: \u0627\u0644\u0642\u0633\u0645\u060c \u0627\u0644\u062f\u0631\u0627\u0633\u0629\u060c \u0627\u0644\u0645\u0631\u062d\u0644\u0629\u060c \u0627\u0644\u0634\u0639\u0628\u0629\u060c \u0627\u0644\u0627\u0633\u0645.',
+                 '\u0627\u0644\u0642\u0633\u0645 \u064a\u062c\u0628 \u0623\u0646 \u064a\u0637\u0627\u0628\u0642 \u0627\u0633\u0645\u0647 \u0641\u064a \u0627\u0644\u0645\u0646\u0638\u0648\u0645\u0629 \u062a\u0645\u0627\u0645\u0627\u064b. \u0627\u0644\u062f\u0631\u0627\u0633\u0629: \u0635\u0628\u0627\u062d\u064a \u0623\u0648 \u0645\u0633\u0627\u0626\u064a.',
+                 '\u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0645\u062b\u0644: \u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u0649. \u0627\u0644\u0634\u0639\u0628\u0629 \u0645\u062b\u0644: \u0627\u0644\u0634\u0639\u0628\u0629 (\u0623).',
+                 '\u0627\u0631\u0641\u0639 \u0627\u0644\u0645\u0644\u0641 \u0645\u0646 \u0644\u0648\u062d\u0629 \u0627\u0644\u0645\u0642\u0631\u0631 > \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0637\u0644\u0628\u0629. \u0627\u0644\u0635\u0641 \u0627\u0644\u0623\u0648\u0644 (\u0627\u0644\u0639\u0646\u0627\u0648\u064a\u0646) \u064a\u064f\u062a\u062c\u0627\u0647\u0644.']:
         info.append([line])
     info.column_dimensions['A'].width = 90
     bio = io.BytesIO()
@@ -161,7 +161,7 @@ def import_students_xlsx(fileobj, replace=False):
     from openpyxl import load_workbook
     valid = {d['name'] for d in COLLEGE_DEPARTMENTS}
     wb = load_workbook(fileobj, read_only=True, data_only=True)
-    ws = wb['الطلبة'] if 'الطلبة' in wb.sheetnames else wb.worksheets[0]
+    ws = wb['\u0627\u0644\u0637\u0644\u0628\u0629'] if '\u0627\u0644\u0637\u0644\u0628\u0629' in wb.sheetnames else wb.worksheets[0]
     data, skipped = [], 0
     for i, row in enumerate(ws.iter_rows(values_only=True)):
         if i == 0:
@@ -203,7 +203,7 @@ def csrf_protect():
     if request.method == 'POST':
         token = session.get('_csrf')
         if not token or token != request.form.get('_csrf'):
-            return "طلب غير صالح، أعد تحميل الصفحة وحاول مجدداً", 400
+            return "\u0637\u0644\u0628 \u063a\u064a\u0631 \u0635\u0627\u0644\u062d\u060c \u0623\u0639\u062f \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0635\u0641\u062d\u0629 \u0648\u062d\u0627\u0648\u0644 \u0645\u062c\u062f\u062f\u0627\u064b", 400
 
 @app.context_processor
 def inject_csrf():
@@ -234,7 +234,7 @@ BASE_CSS_AND_HEAD = """
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
     <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="UOB">
-    <title>جامعة بغداد - كلية الفنون الجميلة</title>
+    <title>\u062c\u0627\u0645\u0639\u0629 \u0628\u063a\u062f\u0627\u062f - \u0643\u0644\u064a\u0629 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u062c\u0645\u064a\u0644\u0629</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
         
@@ -435,19 +435,19 @@ BASE_CSS_AND_HEAD = """
 <div class="main-container">
     <div class="brand-header">
         {% if logo_b64 %}<img src="{{ logo_b64 }}" class="logo-img">{% endif %}
-        <h1>🏛 جامعة بغداد</h1>
-        <h2>كلية الفنون الجميلة</h2>
+        <h1>\U0001f3db \u062c\u0627\u0645\u0639\u0629 \u0628\u063a\u062f\u0627\u062f</h1>
+        <h2>\u0643\u0644\u064a\u0629 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u062c\u0645\u064a\u0644\u0629</h2>
     </div>
     <div class="status-bar">
-        <div class="sb-item">📅 <span id="sb-day">--</span> <span id="sb-date">--</span></div>
-        <div class="sb-item">🕒 <span id="sb-time">--:--:--</span></div>
-        <div class="sb-item"><span id="sb-dot" class="sb-dot"></span><span id="sb-conn">جارٍ الفحص…</span></div>
+        <div class="sb-item">\U0001f4c5 <span id="sb-day">--</span> <span id="sb-date">--</span></div>
+        <div class="sb-item">\U0001f552 <span id="sb-time">--:--:--</span></div>
+        <div class="sb-item"><span id="sb-dot" class="sb-dot"></span><span id="sb-conn">\u062c\u0627\u0631\u064d \u0627\u0644\u0641\u062d\u0635\u2026</span></div>
     </div>
 """
 
 FOOTER_SCRIPTS = """
     <div class="support-footer">
-        الدعم الفني والتطوير: <a href="https://t.me/beko141" target="_blank">تواصل عبر تيليجرام (@beko141)</a>
+        \u0627\u0644\u062f\u0639\u0645 \u0627\u0644\u0641\u0646\u064a \u0648\u0627\u0644\u062a\u0637\u0648\u064a\u0631: <a href="https://t.me/beko141" target="_blank">\u062a\u0648\u0627\u0635\u0644 \u0639\u0628\u0631 \u062a\u064a\u0644\u064a\u062c\u0631\u0627\u0645 (@beko141)</a>
     </div>
 </div>
 <script>
@@ -497,7 +497,7 @@ FOOTER_SCRIPTS = """
 
         let online = navigator.onLine;
         function render() {
-            connEl.textContent = online ? 'متصل بالخادم' : 'غير متصل';
+            connEl.textContent = online ? '\u0645\u062a\u0635\u0644 \u0628\u0627\u0644\u062e\u0627\u062f\u0645' : '\u063a\u064a\u0631 \u0645\u062a\u0635\u0644';
             dotEl.style.background = online ? '#10b981' : '#ef4444';
             dotEl.style.boxShadow = online ? '0 0 10px #10b981' : '0 0 10px #ef4444';
         }
@@ -524,7 +524,7 @@ FOOTER_SCRIPTS = """
             f.addEventListener('submit', function (e) {
                 if (!online) {
                     e.preventDefault();
-                    alert('لا يوجد اتصال بالخادم، لم يُرسل التقرير. حاول عند عودة الاتصال.');
+                    alert('\u0644\u0627 \u064a\u0648\u062c\u062f \u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u062e\u0627\u062f\u0645\u060c \u0644\u0645 \u064a\u064f\u0631\u0633\u0644 \u0627\u0644\u062a\u0642\u0631\u064a\u0631. \u062d\u0627\u0648\u0644 \u0639\u0646\u062f \u0639\u0648\u062f\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644.');
                 }
             });
         });
@@ -545,25 +545,25 @@ def index():
     ok = request.args.get('ok')
     html = BASE_CSS_AND_HEAD + """
     <div style="max-width: 550px; margin: 0 auto;">
-        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">⚠️ {{ error }}</div>{% endif %}
-        {% if ok %}<div style="background:rgba(16,185,129,0.2); border-right:5px solid #10b981; padding:12px; border-radius:10px; margin-bottom:15px; color:#6ee7b7;">✅ {{ ok }}</div>{% endif %}
+        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ error }}</div>{% endif %}
+        {% if ok %}<div style="background:rgba(16,185,129,0.2); border-right:5px solid #10b981; padding:12px; border-radius:10px; margin-bottom:15px; color:#6ee7b7;">\u2705 {{ ok }}</div>{% endif %}
         
         <div style="background: rgba(245,158,11,0.15); border-right: 5px solid var(--accent-gold); padding: 15px; border-radius: 14px; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7;">
-            ✨ <strong>البوابة السيادية الموحدة للتحقق الأكاديمي:</strong><br>
-            أهلاً ومرحباً بسفير الفن والعلم في رحاب كلية الفنون الجميلة. سجّل دخولك للمتابعة.
+            \u2728 <strong>\u0627\u0644\u0628\u0648\u0627\u0628\u0629 \u0627\u0644\u0633\u064a\u0627\u062f\u064a\u0629 \u0627\u0644\u0645\u0648\u062d\u062f\u0629 \u0644\u0644\u062a\u062d\u0642\u0642 \u0627\u0644\u0623\u0643\u0627\u062f\u064a\u0645\u064a:</strong><br>
+            \u0623\u0647\u0644\u0627\u064b \u0648\u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0633\u0641\u064a\u0631 \u0627\u0644\u0641\u0646 \u0648\u0627\u0644\u0639\u0644\u0645 \u0641\u064a \u0631\u062d\u0627\u0628 \u0643\u0644\u064a\u0629 \u0627\u0644\u0641\u0646\u0648\u0646 \u0627\u0644\u062c\u0645\u064a\u0644\u0629. \u0633\u062c\u0651\u0644 \u062f\u062e\u0648\u0644\u0643 \u0644\u0644\u0645\u062a\u0627\u0628\u0639\u0629.
         </div>
 
         <form action="/login" method="POST">
             <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-            <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">البريد الإلكتروني:</label>
+            <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a:</label>
             <input type="email" name="user_email" class="input-field" placeholder="name@cofarts.uobaghdad.edu.iq" required>
 
-            <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">كلمة المرور:</label>
+            <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631:</label>
             <input type="password" name="password" class="input-field" required>
 
-            <button type="submit" class="btn-action">دخول المنظومة الأكاديمية</button>
+            <button type="submit" class="btn-action">\u062f\u062e\u0648\u0644 \u0627\u0644\u0645\u0646\u0638\u0648\u0645\u0629 \u0627\u0644\u0623\u0643\u0627\u062f\u064a\u0645\u064a\u0629</button>
         </form>
-        <p style="text-align:center; margin-top:18px;"><a href="/register" style="color:var(--accent-gold); font-weight:bold; text-decoration:none;">أستاذ جديد؟ إنشاء حساب</a></p>
+        <p style="text-align:center; margin-top:18px;"><a href="/register" style="color:var(--accent-gold); font-weight:bold; text-decoration:none;">\u0623\u0633\u062a\u0627\u0630 \u062c\u062f\u064a\u062f\u061f \u0625\u0646\u0634\u0627\u0621 \u062d\u0633\u0627\u0628</a></p>
     </div>
     """ + FOOTER_SCRIPTS
     return render_template_string(html, logo_b64=get_logo_base64(), error=error, ok=ok)
@@ -579,7 +579,7 @@ def login():
     if time.time() - last > 300:
         fails = 0
     if fails >= 5:
-        return redirect(url_for('index', error='محاولات كثيرة، حاول بعد 5 دقائق'))
+        return redirect(url_for('index', error='\u0645\u062d\u0627\u0648\u0644\u0627\u062a \u0643\u062b\u064a\u0631\u0629\u060c \u062d\u0627\u0648\u0644 \u0628\u0639\u062f 5 \u062f\u0642\u0627\u0626\u0642'))
 
     conn = sqlite3.connect(DB_NAME)
     row = conn.execute('SELECT name, password_hash, role FROM users WHERE email = ?', (email,)).fetchone()
@@ -587,7 +587,7 @@ def login():
 
     if not row or not check_password_hash(row[1], password):
         LOGIN_FAILS[email] = (fails + 1, time.time())
-        return redirect(url_for('index', error='البريد الإلكتروني أو كلمة المرور غير صحيحة'))
+        return redirect(url_for('index', error='\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0623\u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d\u0629'))
 
     LOGIN_FAILS.pop(email, None)
     session.clear()
@@ -607,41 +607,41 @@ def register():
         password = request.form.get('password') or ''
         code = request.form.get('code') or ''
         if not REGISTER_CODE or not secrets.compare_digest(code.encode(), REGISTER_CODE.encode()):
-            error = 'رمز التسجيل غير صحيح'
+            error = '\u0631\u0645\u0632 \u0627\u0644\u062a\u0633\u062c\u064a\u0644 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d'
         elif not name or '@' not in email or email == HEAD_OFFICIAL_EMAIL.lower():
-            error = 'أدخل الاسم وبريداً إلكترونياً صحيحاً'
+            error = '\u0623\u062f\u062e\u0644 \u0627\u0644\u0627\u0633\u0645 \u0648\u0628\u0631\u064a\u062f\u0627\u064b \u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u064b \u0635\u062d\u064a\u062d\u0627\u064b'
         elif len(password) < 8:
-            error = 'كلمة المرور يجب ألا تقل عن 8 أحرف'
+            error = '\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u064a\u062c\u0628 \u0623\u0644\u0627 \u062a\u0642\u0644 \u0639\u0646 8 \u0623\u062d\u0631\u0641'
         else:
             conn = sqlite3.connect(DB_NAME)
             try:
                 conn.execute('INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?)',
                              (email, name, generate_password_hash(password), 'doctor'))
                 conn.commit()
-                return redirect(url_for('index', ok='تم إنشاء الحساب، سجّل دخولك الآن'))
+                return redirect(url_for('index', ok='\u062a\u0645 \u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u062d\u0633\u0627\u0628\u060c \u0633\u062c\u0651\u0644 \u062f\u062e\u0648\u0644\u0643 \u0627\u0644\u0622\u0646'))
             except sqlite3.IntegrityError:
-                error = 'هذا البريد مسجل مسبقاً'
+                error = '\u0647\u0630\u0627 \u0627\u0644\u0628\u0631\u064a\u062f \u0645\u0633\u062c\u0644 \u0645\u0633\u0628\u0642\u0627\u064b'
             finally:
                 conn.close()
 
     lbl = "color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;"
     html = BASE_CSS_AND_HEAD + """
     <div style="max-width: 550px; margin: 0 auto;">
-        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">⚠️ {{ error }}</div>{% endif %}
-        <h3 style="color:var(--accent-gold); text-align:center;">إنشاء حساب أستاذ</h3>
+        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ error }}</div>{% endif %}
+        <h3 style="color:var(--accent-gold); text-align:center;">\u0625\u0646\u0634\u0627\u0621 \u062d\u0633\u0627\u0628 \u0623\u0633\u062a\u0627\u0630</h3>
         <form method="POST">
             <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-            <label style="{{ lbl }}">الاسم الكامل / اللقب العلمي:</label>
+            <label style="{{ lbl }}">\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u0645\u0644 / \u0627\u0644\u0644\u0642\u0628 \u0627\u0644\u0639\u0644\u0645\u064a:</label>
             <input type="text" name="user_name" class="input-field" required>
-            <label style="{{ lbl }}">البريد الإلكتروني:</label>
+            <label style="{{ lbl }}">\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a:</label>
             <input type="email" name="user_email" class="input-field" required>
-            <label style="{{ lbl }}">كلمة المرور (8 أحرف على الأقل):</label>
+            <label style="{{ lbl }}">\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 (8 \u0623\u062d\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644):</label>
             <input type="password" name="password" class="input-field" minlength="8" required>
-            <label style="{{ lbl }}">رمز التسجيل (يعطيه لك مقرر القسم):</label>
+            <label style="{{ lbl }}">\u0631\u0645\u0632 \u0627\u0644\u062a\u0633\u062c\u064a\u0644 (\u064a\u0639\u0637\u064a\u0647 \u0644\u0643 \u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645):</label>
             <input type="text" name="code" class="input-field" required>
-            <button type="submit" class="btn-action">إنشاء الحساب</button>
+            <button type="submit" class="btn-action">\u0625\u0646\u0634\u0627\u0621 \u0627\u0644\u062d\u0633\u0627\u0628</button>
         </form>
-        <p style="text-align:center; margin-top:18px;"><a href="/" style="color:var(--accent-gold); font-weight:bold; text-decoration:none;">← العودة لتسجيل الدخول</a></p>
+        <p style="text-align:center; margin-top:18px;"><a href="/" style="color:var(--accent-gold); font-weight:bold; text-decoration:none;">\u2190 \u0627\u0644\u0639\u0648\u062f\u0629 \u0644\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644</a></p>
     </div>
     """ + FOOTER_SCRIPTS
     return render_template_string(html, logo_b64=get_logo_base64(), error=error, lbl=lbl)
@@ -662,10 +662,10 @@ def departments():
     
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
-        <div>مرحباً بك: <strong style="color:var(--accent-gold);">{{ user_name }}</strong></div>
-        <a href="/logout" class="logout-link">تسجيل الخروج</a>
+        <div>\u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643: <strong style="color:var(--accent-gold);">{{ user_name }}</strong></div>
+        <a href="/logout" class="logout-link">\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c</a>
     </div>
-    <h3 style="text-align:center; color:var(--accent-gold); margin-bottom:20px;">اختر القسم الأكاديمي</h3>
+    <h3 style="text-align:center; color:var(--accent-gold); margin-bottom:20px;">\u0627\u062e\u062a\u0631 \u0627\u0644\u0642\u0633\u0645 \u0627\u0644\u0623\u0643\u0627\u062f\u064a\u0645\u064a</h3>
     <div class="dept-grid">
         {% for d in depts %}
         <a href="/select_options?dept={{ d.name }}" class="dept-card">
@@ -682,8 +682,8 @@ def departments():
 def select_options():
     if 'user_role' not in session:
         return redirect(url_for('index'))
-    dept = request.args.get('dept', 'قسم التربية الفنية')
-    shift = request.args.get('shift', 'صباحي')
+    dept = request.args.get('dept', '\u0642\u0633\u0645 \u0627\u0644\u062a\u0631\u0628\u064a\u0629 \u0627\u0644\u0641\u0646\u064a\u0629')
+    shift = request.args.get('shift', '\u0635\u0628\u0627\u062d\u064a')
     
     dept_data = FULL_COLLEGE_DATA.get(dept, {})
     shifts = list(dept_data.keys())
@@ -691,23 +691,23 @@ def select_options():
     
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
-        <div>القسم: <strong style="color:var(--accent-gold);">{{ dept }}</strong></div>
+        <div>\u0627\u0644\u0642\u0633\u0645: <strong style="color:var(--accent-gold);">{{ dept }}</strong></div>
         <div>
-            <a href="/departments" style="color:var(--accent-green); text-decoration:none; margin-left:15px; font-weight:bold;">← الأقسام</a>
-            <a href="/logout" class="logout-link">خروج</a>
+            <a href="/departments" style="color:var(--accent-green); text-decoration:none; margin-left:15px; font-weight:bold;">\u2190 \u0627\u0644\u0623\u0642\u0633\u0627\u0645</a>
+            <a href="/logout" class="logout-link">\u062e\u0631\u0648\u062c</a>
         </div>
     </div>
 
     <div style="background:rgba(14,24,46,0.9); padding:25px; border-radius:20px; border:1px solid rgba(255,255,255,0.15);">
-        <h3 style="color:var(--accent-gold); margin-top:0;">1. اختر نوع الدراسة:</h3>
+        <h3 style="color:var(--accent-gold); margin-top:0;">1. \u0627\u062e\u062a\u0631 \u0646\u0648\u0639 \u0627\u0644\u062f\u0631\u0627\u0633\u0629:</h3>
         <div style="margin-bottom:25px;">
             {% for s in shifts %}
-            <a href="/select_options?dept={{ dept }}&shift={{ s }}" class="pill-btn {% if s == shift %}active{% endif %}">الدراسة {{ s }}ة</a>
+            <a href="/select_options?dept={{ dept }}&shift={{ s }}" class="pill-btn {% if s == shift %}active{% endif %}">\u0627\u0644\u062f\u0631\u0627\u0633\u0629 {{ s }}\u0629</a>
             {% endfor %}
         </div>
 
-        <h3 style="color:var(--accent-gold);">2. اختر المرحلة والشعبة لرصد الحضور:</h3>
-        {% if not stages %}<p style="color:var(--text-muted);">لا توجد أسماء طلبة لهذا القسم بعد. يضيفها مقرر القسم من «إدارة الطلبة».</p>{% endif %}
+        <h3 style="color:var(--accent-gold);">2. \u0627\u062e\u062a\u0631 \u0627\u0644\u0645\u0631\u062d\u0644\u0629 \u0648\u0627\u0644\u0634\u0639\u0628\u0629 \u0644\u0631\u0635\u062f \u0627\u0644\u062d\u0636\u0648\u0631:</h3>
+        {% if not stages %}<p style="color:var(--text-muted);">\u0644\u0627 \u062a\u0648\u062c\u062f \u0623\u0633\u0645\u0627\u0621 \u0637\u0644\u0628\u0629 \u0644\u0647\u0630\u0627 \u0627\u0644\u0642\u0633\u0645 \u0628\u0639\u062f. \u064a\u0636\u064a\u0641\u0647\u0627 \u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645 \u0645\u0646 \u00ab\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0637\u0644\u0628\u0629\u00bb.</p>{% endif %}
         {% for st in stages %}
             <div style="margin-bottom:15px; padding:15px; background:rgba(5,10,24,0.8); border-radius:14px;">
                 <strong style="color:var(--accent-green); display:block; margin-bottom:10px;">{{ st }}:</strong>
@@ -735,7 +735,7 @@ def attendance():
         return redirect(url_for('departments'))
     
     if request.method == 'POST':
-        subject = ' '.join((request.form.get('subject') or 'مادة دراسية').split())
+        subject = ' '.join((request.form.get('subject') or '\u0645\u0627\u062f\u0629 \u062f\u0631\u0627\u0633\u064a\u0629').split())
         today = baghdad_now().date()
         try:
             lecture_date = datetime.strptime(request.form.get('lecture_date', ''), '%Y-%m-%d').date()
@@ -748,8 +748,8 @@ def attendance():
         details_list = []
         
         for idx, st_name in enumerate(students):
-            status = request.form.get(f'status_{idx}', 'حاضر')
-            if status == 'حاضر':
+            status = request.form.get(f'status_{idx}', '\u062d\u0627\u0636\u0631')
+            if status == '\u062d\u0627\u0636\u0631':
                 present += 1
             else:
                 absent += 1
@@ -761,44 +761,44 @@ def attendance():
                 INSERT INTO reports (doctor, dept, shift, stage, section, subject, timestamp, present_count, absent_count, details, lecture_date)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (session['user_name'], dept, shift, stage, section, subject, baghdad_now().strftime("%Y-%m-%d %H:%M"),
-                  present, absent, " | ".join(details_list) if details_list else "لا يوجد غياب", lecture_date.isoformat()))
+                  present, absent, " | ".join(details_list) if details_list else "\u0644\u0627 \u064a\u0648\u062c\u062f \u063a\u064a\u0627\u0628", lecture_date.isoformat()))
             conn.commit()
         except sqlite3.IntegrityError:
             return redirect(url_for('attendance', dept=dept, shift=shift, stage=stage, section=section,
-                                    error='سبق تسجيل حضور هذه المادة لهذه الشعبة في هذا التاريخ'))
+                                    error='\u0633\u0628\u0642 \u062a\u0633\u062c\u064a\u0644 \u062d\u0636\u0648\u0631 \u0647\u0630\u0647 \u0627\u0644\u0645\u0627\u062f\u0629 \u0644\u0647\u0630\u0647 \u0627\u0644\u0634\u0639\u0628\u0629 \u0641\u064a \u0647\u0630\u0627 \u0627\u0644\u062a\u0627\u0631\u064a\u062e'))
         finally:
             conn.close()
         
         return render_template_string(BASE_CSS_AND_HEAD + """
         <div style="text-align:center; padding:30px;">
-            <div style="font-size:4rem;">✅</div>
-            <h2 style="color:var(--accent-green);">تم إرسال وحفظ سجل الحضور بنجاح!</h2>
-            <p style="color:var(--text-muted);">الحضور: {{ present }} | الغياب/الإجازات: {{ absent }}</p>
+            <div style="font-size:4rem;">\u2705</div>
+            <h2 style="color:var(--accent-green);">\u062a\u0645 \u0625\u0631\u0633\u0627\u0644 \u0648\u062d\u0641\u0638 \u0633\u062c\u0644 \u0627\u0644\u062d\u0636\u0648\u0631 \u0628\u0646\u062c\u0627\u062d!</h2>
+            <p style="color:var(--text-muted);">\u0627\u0644\u062d\u0636\u0648\u0631: {{ present }} | \u0627\u0644\u063a\u064a\u0627\u0628/\u0627\u0644\u0625\u062c\u0627\u0632\u0627\u062a: {{ absent }}</p>
             <br>
-            <a href="/departments" class="btn-action" style="text-decoration:none; display:inline-block; width:auto;">العودة للأقسام</a>
+            <a href="/departments" class="btn-action" style="text-decoration:none; display:inline-block; width:auto;">\u0627\u0644\u0639\u0648\u062f\u0629 \u0644\u0644\u0623\u0642\u0633\u0627\u0645</a>
         </div>
         """ + FOOTER_SCRIPTS, logo_b64=get_logo_base64(), present=present, absent=absent)
 
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
         <div><strong>{{ dept }}</strong> - {{ shift }} - {{ stage }} ({{ section }})</div>
-        <a href="/select_options?dept={{ dept }}&shift={{ shift }}" style="color:var(--accent-gold); text-decoration:none; font-weight:bold;">← رجوع</a>
+        <a href="/select_options?dept={{ dept }}&shift={{ shift }}" style="color:var(--accent-gold); text-decoration:none; font-weight:bold;">\u2190 \u0631\u062c\u0648\u0639</a>
     </div>
 
     <form method="POST">
         <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">⚠️ {{ error }}</div>{% endif %}
-        <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">تاريخ المحاضرة:</label>
+        {% if error %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ error }}</div>{% endif %}
+        <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0629:</label>
         <input type="date" name="lecture_date" class="input-field" value="{{ today }}" max="{{ today }}" required>
-        <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">اسم المادة الدراسية:</label>
-        <input type="text" name="subject" class="input-field" placeholder="اكتب اسم المادة هنا..." required>
+        <label style="color:var(--accent-gold); font-weight:bold; display:block; margin-bottom:6px;">\u0627\u0633\u0645 \u0627\u0644\u0645\u0627\u062f\u0629 \u0627\u0644\u062f\u0631\u0627\u0633\u064a\u0629:</label>
+        <input type="text" name="subject" class="input-field" placeholder="\u0627\u0643\u062a\u0628 \u0627\u0633\u0645 \u0627\u0644\u0645\u0627\u062f\u0629 \u0647\u0646\u0627..." required>
 
         <table>
             <thead>
                 <tr>
-                    <th style="width:40px;">ت</th>
-                    <th>اسم الطالب</th>
-                    <th style="width:120px;">الحالة</th>
+                    <th style="width:40px;">\u062a</th>
+                    <th>\u0627\u0633\u0645 \u0627\u0644\u0637\u0627\u0644\u0628</th>
+                    <th style="width:120px;">\u0627\u0644\u062d\u0627\u0644\u0629</th>
                 </tr>
             </thead>
             <tbody>
@@ -808,9 +808,9 @@ def attendance():
                     <td style="font-weight:bold;">{{ st }}</td>
                     <td>
                         <select name="status_{{ loop.index0 }}" style="padding:8px; border-radius:8px; background:#050a18; color:#fff; border:1px solid #334155; font-family:'Cairo'; width:100%;">
-                            <option value="حاضر">حاضر ✅</option>
-                            <option value="غائب">غائب ❌</option>
-                            <option value="إجازة">إجازة 📝</option>
+                            <option value="\u062d\u0627\u0636\u0631">\u062d\u0627\u0636\u0631 \u2705</option>
+                            <option value="\u063a\u0627\u0626\u0628">\u063a\u0627\u0626\u0628 \u274c</option>
+                            <option value="\u0625\u062c\u0627\u0632\u0629">\u0625\u062c\u0627\u0632\u0629 \U0001f4dd</option>
                         </select>
                     </td>
                 </tr>
@@ -818,7 +818,7 @@ def attendance():
             </tbody>
         </table>
         <br>
-        <button type="submit" class="btn-action">اعتماد وإرسال التقرير لمقرر القسم</button>
+        <button type="submit" class="btn-action">\u0627\u0639\u062a\u0645\u0627\u062f \u0648\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u062a\u0642\u0631\u064a\u0631 \u0644\u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645</button>
     </form>
     """ + FOOTER_SCRIPTS
     return render_template_string(html, logo_b64=get_logo_base64(), dept=dept, shift=shift, stage=stage, section=section, students=students,
@@ -860,25 +860,25 @@ def head_dashboard():
     bars = [(n, round(a * 100 / (a + b)) if a + b else 0, a, b) for n, (a, b) in by_dept.items()]
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
-        <div>لوحة مقرر القسم: <strong style="color:var(--accent-green);">{{ user_name }}</strong></div>
+        <div>\u0644\u0648\u062d\u0629 \u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645: <strong style="color:var(--accent-green);">{{ user_name }}</strong></div>
         <div>
-            <a href="/admin/students" class="chip-btn" style="background:var(--accent-blue);">👥 إدارة الطلبة</a>
-            <a href="/admin/accounts" class="chip-btn" style="background:#8b5cf6;">🔑 حسابات الأساتذة</a>
-            <a href="/export_csv{{ '?' + qs if qs }}" class="chip-btn">📥 تصدير CSV</a>
-            <a href="/logout" class="logout-link">خروج</a>
+            <a href="/admin/students" class="chip-btn" style="background:var(--accent-blue);">\U0001f465 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0637\u0644\u0628\u0629</a>
+            <a href="/admin/accounts" class="chip-btn" style="background:#8b5cf6;">\U0001f511 \u062d\u0633\u0627\u0628\u0627\u062a \u0627\u0644\u0623\u0633\u0627\u062a\u0630\u0629</a>
+            <a href="/export_csv{{ '?' + qs if qs }}" class="chip-btn">\U0001f4e5 \u062a\u0635\u062f\u064a\u0631 CSV</a>
+            <a href="/logout" class="logout-link">\u062e\u0631\u0648\u062c</a>
         </div>
     </div>
 
     <div class="stat-grid">
-        <div class="stat-card"><div class="num" style="color:var(--accent-gold);">{{ reports|length }}</div><div class="lbl">تقرير حضور</div></div>
-        <div class="stat-card"><div class="num" style="color:#10b981;">{{ present }}</div><div class="lbl">إجمالي الحضور</div></div>
-        <div class="stat-card"><div class="num" style="color:#ef4444;">{{ absent }}</div><div class="lbl">الغياب والإجازات</div></div>
-        <div class="stat-card"><div class="ring" style="--p: {{ rate }};"><span>{{ rate }}%</span></div><div class="lbl">نسبة الحضور</div></div>
+        <div class="stat-card"><div class="num" style="color:var(--accent-gold);">{{ reports|length }}</div><div class="lbl">\u062a\u0642\u0631\u064a\u0631 \u062d\u0636\u0648\u0631</div></div>
+        <div class="stat-card"><div class="num" style="color:#10b981;">{{ present }}</div><div class="lbl">\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u062d\u0636\u0648\u0631</div></div>
+        <div class="stat-card"><div class="num" style="color:#ef4444;">{{ absent }}</div><div class="lbl">\u0627\u0644\u063a\u064a\u0627\u0628 \u0648\u0627\u0644\u0625\u062c\u0627\u0632\u0627\u062a</div></div>
+        <div class="stat-card"><div class="ring" style="--p: {{ rate }};"><span>{{ rate }}%</span></div><div class="lbl">\u0646\u0633\u0628\u0629 \u0627\u0644\u062d\u0636\u0648\u0631</div></div>
     </div>
 
     {% if bars %}
     <div style="background:rgba(14,24,46,0.9); padding:18px 22px; border-radius:20px; border:1px solid rgba(255,255,255,0.12); margin-bottom:20px;">
-        <strong style="color:var(--accent-gold);">نسبة الحضور حسب القسم</strong>
+        <strong style="color:var(--accent-gold);">\u0646\u0633\u0628\u0629 \u0627\u0644\u062d\u0636\u0648\u0631 \u062d\u0633\u0628 \u0627\u0644\u0642\u0633\u0645</strong>
         {% for n, pct, a, b in bars %}
         <div class="bar-row"><div style="display:flex; justify-content:space-between;"><span>{{ n }}</span><span>{{ pct }}%</span></div>
         <div class="bar-track"><div class="bar-fill" style="width: {{ pct }}%;"></div></div></div>
@@ -888,34 +888,34 @@ def head_dashboard():
 
     <form method="GET" class="filter-bar">
         <select name="dept" class="input-field">
-            <option value="">كل الأقسام</option>
+            <option value="">\u0643\u0644 \u0627\u0644\u0623\u0642\u0633\u0627\u0645</option>
             {% for d in depts %}<option value="{{ d.name }}" {% if d.name == f.dept %}selected{% endif %}>{{ d.name }}</option>{% endfor %}
         </select>
-        <input type="text" name="q" class="input-field" placeholder="بحث بالمادة أو الأستاذ" value="{{ f.q }}">
-        <input type="date" name="d1" class="input-field" value="{{ f.d1 }}" title="من تاريخ">
-        <input type="date" name="d2" class="input-field" value="{{ f.d2 }}" title="إلى تاريخ">
-        <button type="submit" class="btn-action" style="padding:12px;">تصفية</button>
+        <input type="text" name="q" class="input-field" placeholder="\u0628\u062d\u062b \u0628\u0627\u0644\u0645\u0627\u062f\u0629 \u0623\u0648 \u0627\u0644\u0623\u0633\u062a\u0627\u0630" value="{{ f.q }}">
+        <input type="date" name="d1" class="input-field" value="{{ f.d1 }}" title="\u0645\u0646 \u062a\u0627\u0631\u064a\u062e">
+        <input type="date" name="d2" class="input-field" value="{{ f.d2 }}" title="\u0625\u0644\u0649 \u062a\u0627\u0631\u064a\u062e">
+        <button type="submit" class="btn-action" style="padding:12px;">\u062a\u0635\u0641\u064a\u0629</button>
     </form>
 
     <div style="overflow-x:auto;">
         <table>
             <thead><tr>
-                <th>تاريخ المحاضرة</th><th>الأستاذ</th><th>القسم والمرحلة</th><th>المادة</th><th>الحضور / الغياب</th><th>الطلبة الغائبون</th><th></th>
+                <th>\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0629</th><th>\u0627\u0644\u0623\u0633\u062a\u0627\u0630</th><th>\u0627\u0644\u0642\u0633\u0645 \u0648\u0627\u0644\u0645\u0631\u062d\u0644\u0629</th><th>\u0627\u0644\u0645\u0627\u062f\u0629</th><th>\u0627\u0644\u062d\u0636\u0648\u0631 / \u0627\u0644\u063a\u064a\u0627\u0628</th><th>\u0627\u0644\u0637\u0644\u0628\u0629 \u0627\u0644\u063a\u0627\u0626\u0628\u0648\u0646</th><th></th>
             </tr></thead>
             <tbody>
                 {% for r in reports %}
                 <tr>
-                    <td>{{ r[11] or '—' }}<br><span style="font-size:0.75rem; color:var(--text-muted);">أُرسل {{ r[7] }}</span></td>
+                    <td>{{ r[11] or '\u2014' }}<br><span style="font-size:0.75rem; color:var(--text-muted);">\u0623\u064f\u0631\u0633\u0644 {{ r[7] }}</span></td>
                     <td>{{ r[1] }}</td>
                     <td>{{ r[2] }} ({{ r[3] }} - {{ r[4] }} {{ r[5] }})</td>
                     <td>{{ r[6] }}</td>
-                    <td><span style="color:#10b981;">{{ r[8] }} حاضر</span> / <span style="color:#ef4444;">{{ r[9] }} غائب</span></td>
+                    <td><span style="color:#10b981;">{{ r[8] }} \u062d\u0627\u0636\u0631</span> / <span style="color:#ef4444;">{{ r[9] }} \u063a\u0627\u0626\u0628</span></td>
                     <td style="font-size:0.85rem; color:#fca5a5;">{{ r[10] }}</td>
-                    <td><form method="POST" action="/report/{{ r[0] }}/delete" style="margin:0;" onsubmit="return confirm('حذف هذا السجل نهائياً؟');">
-                        <input type="hidden" name="_csrf" value="{{ csrf_token }}"><button class="del-btn" title="حذف">🗑</button></form></td>
+                    <td><form method="POST" action="/report/{{ r[0] }}/delete" style="margin:0;" onsubmit="return confirm('\u062d\u0630\u0641 \u0647\u0630\u0627 \u0627\u0644\u0633\u062c\u0644 \u0646\u0647\u0627\u0626\u064a\u0627\u064b\u061f');">
+                        <input type="hidden" name="_csrf" value="{{ csrf_token }}"><button class="del-btn" title="\u062d\u0630\u0641">\U0001f5d1</button></form></td>
                 </tr>
                 {% else %}
-                <tr><td colspan="7" style="text-align:center; color:var(--text-muted);">لا توجد سجلات مطابقة.</td></tr>
+                <tr><td colspan="7" style="text-align:center; color:var(--text-muted);">\u0644\u0627 \u062a\u0648\u062c\u062f \u0633\u062c\u0644\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629.</td></tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -943,52 +943,52 @@ def admin_students():
     if request.method == 'POST':
         fl = request.files.get('file')
         if not fl or not fl.filename.lower().endswith('.xlsx'):
-            err = 'اختر ملف Excel بصيغة xlsx'
+            err = '\u0627\u062e\u062a\u0631 \u0645\u0644\u0641 Excel \u0628\u0635\u064a\u063a\u0629 xlsx'
         else:
             try:
                 added, skipped = import_students_xlsx(fl.stream, replace=bool(request.form.get('replace')))
-                msg = f'تم استيراد {added} طالباً' + (f' وتجاهل {skipped} صفاً غير صالح' if skipped else '')
+                msg = f'\u062a\u0645 \u0627\u0633\u062a\u064a\u0631\u0627\u062f {added} \u0637\u0627\u0644\u0628\u0627\u064b' + (f' \u0648\u062a\u062c\u0627\u0647\u0644 {skipped} \u0635\u0641\u0627\u064b \u063a\u064a\u0631 \u0635\u0627\u0644\u062d' if skipped else '')
             except Exception:
-                err = 'تعذّر قراءة الملف. تأكد من الأعمدة: القسم، الدراسة، المرحلة، الشعبة، الاسم'
+                err = '\u062a\u0639\u0630\u0651\u0631 \u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0645\u0644\u0641. \u062a\u0623\u0643\u062f \u0645\u0646 \u0627\u0644\u0623\u0639\u0645\u062f\u0629: \u0627\u0644\u0642\u0633\u0645\u060c \u0627\u0644\u062f\u0631\u0627\u0633\u0629\u060c \u0627\u0644\u0645\u0631\u062d\u0644\u0629\u060c \u0627\u0644\u0634\u0639\u0628\u0629\u060c \u0627\u0644\u0627\u0633\u0645'
     counts = []
     for d in COLLEGE_DEPARTMENTS:
         n = sum(len(v) for sh in FULL_COLLEGE_DATA.get(d['name'], {}).values() for st in sh.values() for v in st.values())
         counts.append((d['icon'], d['name'], n))
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
-        <div>إدارة الطلبة</div>
-        <div><a href="/head_dashboard" class="chip-btn" style="background:var(--accent-blue);">← اللوحة</a><a href="/logout" class="logout-link">خروج</a></div>
+        <div>\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0637\u0644\u0628\u0629</div>
+        <div><a href="/head_dashboard" class="chip-btn" style="background:var(--accent-blue);">\u2190 \u0627\u0644\u0644\u0648\u062d\u0629</a><a href="/logout" class="logout-link">\u062e\u0631\u0648\u062c</a></div>
     </div>
-    {% if err %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">⚠️ {{ err }}</div>{% endif %}
-    {% if msg %}<div style="background:rgba(16,185,129,0.2); border-right:5px solid #10b981; padding:12px; border-radius:10px; margin-bottom:15px; color:#6ee7b7;">✅ {{ msg }}</div>{% endif %}
+    {% if err %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ err }}</div>{% endif %}
+    {% if msg %}<div style="background:rgba(16,185,129,0.2); border-right:5px solid #10b981; padding:12px; border-radius:10px; margin-bottom:15px; color:#6ee7b7;">\u2705 {{ msg }}</div>{% endif %}
     <div class="stat-grid">
         {% for icon, name, n in counts %}<div class="stat-card"><div style="font-size:1.8rem;">{{ icon }}</div><div class="num" style="color:var(--accent-gold);">{{ n }}</div><div class="lbl">{{ name }}</div></div>{% endfor %}
     </div>
     <div style="background:rgba(14,24,46,0.9); padding:22px; border-radius:20px; border:1px solid rgba(255,255,255,0.12);">
-        <h3 style="color:var(--accent-gold); margin-top:0;">استيراد الأسماء من Excel</h3>
-        <p style="color:var(--text-muted); line-height:1.8;">نزّل الملف الحالي، عدّله، ثم ارفعه. الأعمدة: القسم، الدراسة، المرحلة، الشعبة، الاسم. تُرتَّب الأسماء أبجدياً تلقائياً.</p>
-        <a href="/admin/students/export" class="chip-btn">📥 تنزيل الأسماء الحالية (Excel)</a>
+        <h3 style="color:var(--accent-gold); margin-top:0;">\u0627\u0633\u062a\u064a\u0631\u0627\u062f \u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0645\u0646 Excel</h3>
+        <p style="color:var(--text-muted); line-height:1.8;">\u0646\u0632\u0651\u0644 \u0627\u0644\u0645\u0644\u0641 \u0627\u0644\u062d\u0627\u0644\u064a\u060c \u0639\u062f\u0651\u0644\u0647\u060c \u062b\u0645 \u0627\u0631\u0641\u0639\u0647. \u0627\u0644\u0623\u0639\u0645\u062f\u0629: \u0627\u0644\u0642\u0633\u0645\u060c \u0627\u0644\u062f\u0631\u0627\u0633\u0629\u060c \u0627\u0644\u0645\u0631\u062d\u0644\u0629\u060c \u0627\u0644\u0634\u0639\u0628\u0629\u060c \u0627\u0644\u0627\u0633\u0645. \u062a\u064f\u0631\u062a\u0651\u064e\u0628 \u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0623\u0628\u062c\u062f\u064a\u0627\u064b \u062a\u0644\u0642\u0627\u0626\u064a\u0627\u064b.</p>
+        <a href="/admin/students/export" class="chip-btn">\U0001f4e5 \u062a\u0646\u0632\u064a\u0644 \u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 (Excel)</a>
         <form method="POST" enctype="multipart/form-data" style="margin-top:18px;">
             <input type="hidden" name="_csrf" value="{{ csrf_token }}">
             <input type="file" name="file" accept=".xlsx" class="input-field" required>
-            <label style="display:block; margin-bottom:16px;"><input type="checkbox" name="replace" value="1"> استبدال كل الأسماء الحالية بمحتوى الملف</label>
-            <button type="submit" class="btn-action">رفع واستيراد</button>
+            <label style="display:block; margin-bottom:16px;"><input type="checkbox" name="replace" value="1"> \u0627\u0633\u062a\u0628\u062f\u0627\u0644 \u0643\u0644 \u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u0628\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0645\u0644\u0641</label>
+            <button type="submit" class="btn-action">\u0631\u0641\u0639 \u0648\u0627\u0633\u062a\u064a\u0631\u0627\u062f</button>
         </form>
     </div>
     """ + FOOTER_SCRIPTS
     return render_template_string(html, logo_b64=get_logo_base64(), msg=msg, err=err, counts=counts)
 
 PW_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789'
-EMAIL_RE = re.compile(r'[^\s,،;]+@[^\s,،;]+')
+EMAIL_RE = re.compile(r'[^\s,\u060c;]+@[^\s,\u060c;]+')
 
 def build_accounts_xlsx(rows):
     from openpyxl import Workbook
     from openpyxl.styles import Font, PatternFill, Alignment
     wb = Workbook()
     ws = wb.active
-    ws.title = 'الحسابات'
+    ws.title = '\u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a'
     ws.sheet_view.rightToLeft = True
-    ws.append(['الاسم', 'البريد الإلكتروني', 'كلمة المرور', 'الحالة'])
+    ws.append(['\u0627\u0644\u0627\u0633\u0645', '\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a', '\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631', '\u0627\u0644\u062d\u0627\u0644\u0629'])
     for c in ws[1]:
         c.font = Font(name='Arial', bold=True, color='FFFFFF')
         c.fill = PatternFill('solid', fgColor='B45309')
@@ -1001,7 +1001,7 @@ def build_accounts_xlsx(rows):
         row[1].alignment = Alignment(horizontal='left')
         row[2].alignment = Alignment(horizontal='left')
     ws.append([])
-    ws.append(['تنبيه: كلمات المرور لا تُحفظ في المنظومة ولا يمكن استرجاعها. سلّم كل أستاذ بياناته ثم احذف هذا الملف.'])
+    ws.append(['\u062a\u0646\u0628\u064a\u0647: \u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0645\u0631\u0648\u0631 \u0644\u0627 \u062a\u064f\u062d\u0641\u0638 \u0641\u064a \u0627\u0644\u0645\u0646\u0638\u0648\u0645\u0629 \u0648\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0633\u062a\u0631\u062c\u0627\u0639\u0647\u0627. \u0633\u0644\u0651\u0645 \u0643\u0644 \u0623\u0633\u062a\u0627\u0630 \u0628\u064a\u0627\u0646\u0627\u062a\u0647 \u062b\u0645 \u0627\u062d\u0630\u0641 \u0647\u0630\u0627 \u0627\u0644\u0645\u0644\u0641.'])
     for col, w in zip('ABCD', (30, 38, 18, 14)):
         ws.column_dimensions[col].width = w
     ws.freeze_panes = 'A2'
@@ -1023,7 +1023,7 @@ def admin_accounts():
                 continue
             m = EMAIL_RE.search(line)
             email = m.group(0).lower() if m else ''
-            name = re.sub(r'[,،;\t]+', ' ', line.replace(m.group(0), ' ') if m else line).strip()
+            name = re.sub(r'[,\u060c;\t]+', ' ', line.replace(m.group(0), ' ') if m else line).strip()
             if not m or not name or email == HEAD_OFFICIAL_EMAIL.lower() or email in seen:
                 bad += 1
                 continue
@@ -1041,32 +1041,32 @@ def admin_accounts():
                 conn.commit()
             finally:
                 conn.close()
-            out.append((name, email, pw, 'كلمة مرور جديدة' if ex else 'حساب جديد'))
+            out.append((name, email, pw, '\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u062c\u062f\u064a\u062f\u0629' if ex else '\u062d\u0633\u0627\u0628 \u062c\u062f\u064a\u062f'))
         if out:
             return send_file(build_accounts_xlsx(out), as_attachment=True, download_name='accounts.xlsx',
                              mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        err = 'لم يُنشأ أي حساب. اكتب في كل سطر: اسم الأستاذ ثم بريده الإلكتروني.'
+        err = '\u0644\u0645 \u064a\u064f\u0646\u0634\u0623 \u0623\u064a \u062d\u0633\u0627\u0628. \u0627\u0643\u062a\u0628 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631: \u0627\u0633\u0645 \u0627\u0644\u0623\u0633\u062a\u0627\u0630 \u062b\u0645 \u0628\u0631\u064a\u062f\u0647 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a.'
     conn = sqlite3.connect(DB_NAME)
     docs = conn.execute("SELECT name, email FROM users WHERE role = 'doctor' ORDER BY name").fetchall()
     conn.close()
     html = BASE_CSS_AND_HEAD + """
     <div class="nav-bar">
-        <div>حسابات الأساتذة</div>
-        <div><a href="/head_dashboard" class="chip-btn" style="background:var(--accent-blue);">← اللوحة</a><a href="/logout" class="logout-link">خروج</a></div>
+        <div>\u062d\u0633\u0627\u0628\u0627\u062a \u0627\u0644\u0623\u0633\u0627\u062a\u0630\u0629</div>
+        <div><a href="/head_dashboard" class="chip-btn" style="background:var(--accent-blue);">\u2190 \u0627\u0644\u0644\u0648\u062d\u0629</a><a href="/logout" class="logout-link">\u062e\u0631\u0648\u062c</a></div>
     </div>
-    {% if err %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">⚠️ {{ err }}</div>{% endif %}
+    {% if err %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ err }}</div>{% endif %}
     <div style="background:rgba(14,24,46,0.9); padding:22px; border-radius:20px; border:1px solid rgba(255,255,255,0.12); margin-bottom:20px;">
-        <h3 style="color:var(--accent-gold); margin-top:0;">إنشاء حسابات جاهزة</h3>
-        <p style="color:var(--text-muted); line-height:1.8;">اكتب في كل سطر اسم الأستاذ وبريده. تُنشأ لكل أستاذ كلمة مرور عشوائية، وتنزل لك في ملف Excel مرة واحدة فقط. إن كتبت بريداً موجوداً تُعاد كلمة مروره.</p>
+        <h3 style="color:var(--accent-gold); margin-top:0;">\u0625\u0646\u0634\u0627\u0621 \u062d\u0633\u0627\u0628\u0627\u062a \u062c\u0627\u0647\u0632\u0629</h3>
+        <p style="color:var(--text-muted); line-height:1.8;">\u0627\u0643\u062a\u0628 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631 \u0627\u0633\u0645 \u0627\u0644\u0623\u0633\u062a\u0627\u0630 \u0648\u0628\u0631\u064a\u062f\u0647. \u062a\u064f\u0646\u0634\u0623 \u0644\u0643\u0644 \u0623\u0633\u062a\u0627\u0630 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0639\u0634\u0648\u0627\u0626\u064a\u0629\u060c \u0648\u062a\u0646\u0632\u0644 \u0644\u0643 \u0641\u064a \u0645\u0644\u0641 Excel \u0645\u0631\u0629 \u0648\u0627\u062d\u062f\u0629 \u0641\u0642\u0637. \u0625\u0646 \u0643\u062a\u0628\u062a \u0628\u0631\u064a\u062f\u0627\u064b \u0645\u0648\u062c\u0648\u062f\u0627\u064b \u062a\u064f\u0639\u0627\u062f \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631\u0647.</p>
         <form method="POST">
             <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-            <textarea name="lines" class="input-field" rows="7" placeholder="د. أحمد علي، ahmed@cofarts.uobaghdad.edu.iq" required></textarea>
-            <button type="submit" class="btn-action">إنشاء وتنزيل ملف الحسابات</button>
+            <textarea name="lines" class="input-field" rows="7" placeholder="\u062f. \u0623\u062d\u0645\u062f \u0639\u0644\u064a\u060c ahmed@cofarts.uobaghdad.edu.iq" required></textarea>
+            <button type="submit" class="btn-action">\u0625\u0646\u0634\u0627\u0621 \u0648\u062a\u0646\u0632\u064a\u0644 \u0645\u0644\u0641 \u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a</button>
         </form>
     </div>
-    <h3 style="color:var(--accent-gold);">الحسابات الحالية ({{ docs|length }})</h3>
-    <div style="overflow-x:auto;"><table><thead><tr><th>الاسم</th><th>البريد</th></tr></thead><tbody>
-        {% for n, e in docs %}<tr><td>{{ n }}</td><td style="direction:ltr; text-align:right;">{{ e }}</td></tr>{% else %}<tr><td colspan="2" style="text-align:center; color:var(--text-muted);">لا توجد حسابات بعد.</td></tr>{% endfor %}
+    <h3 style="color:var(--accent-gold);">\u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a \u0627\u0644\u062d\u0627\u0644\u064a\u0629 ({{ docs|length }})</h3>
+    <div style="overflow-x:auto;"><table><thead><tr><th>\u0627\u0644\u0627\u0633\u0645</th><th>\u0627\u0644\u0628\u0631\u064a\u062f</th></tr></thead><tbody>
+        {% for n, e in docs %}<tr><td>{{ n }}</td><td style="direction:ltr; text-align:right;">{{ e }}</td></tr>{% else %}<tr><td colspan="2" style="text-align:center; color:var(--text-muted);">\u0644\u0627 \u062a\u0648\u062c\u062f \u062d\u0633\u0627\u0628\u0627\u062a \u0628\u0639\u062f.</td></tr>{% endfor %}
     </tbody></table></div>
     """ + FOOTER_SCRIPTS
     return render_template_string(html, logo_b64=get_logo_base64(), err=err, docs=docs)
@@ -1086,7 +1086,7 @@ def export_csv():
     si = io.StringIO()
     si.write('\ufeff')
     cw = csv.writer(si)
-    cw.writerow(['ID', 'الأستاذ', 'القسم', 'الدراسة', 'المرحلة', 'الشعبة', 'المادة', 'الوقت', 'عدد الحضور', 'عدد الغياب', 'تفاصيل الغياب', 'تاريخ المحاضرة'])
+    cw.writerow(['ID', '\u0627\u0644\u0623\u0633\u062a\u0627\u0630', '\u0627\u0644\u0642\u0633\u0645', '\u0627\u0644\u062f\u0631\u0627\u0633\u0629', '\u0627\u0644\u0645\u0631\u062d\u0644\u0629', '\u0627\u0644\u0634\u0639\u0628\u0629', '\u0627\u0644\u0645\u0627\u062f\u0629', '\u0627\u0644\u0648\u0642\u062a', '\u0639\u062f\u062f \u0627\u0644\u062d\u0636\u0648\u0631', '\u0639\u062f\u062f \u0627\u0644\u063a\u064a\u0627\u0628', '\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u063a\u064a\u0627\u0628', '\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0629'])
     cw.writerows(rows)
     output = io.BytesIO(si.getvalue().encode('utf-8'))
     return send_file(output, mimetype="text/csv", as_attachment=True, download_name="cofarts_attendance_report.csv")
@@ -1096,7 +1096,7 @@ self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim(
 self.addEventListener('fetch', function (e) {
     if (e.request.method !== 'GET' || e.request.mode !== 'navigate') return;
     e.respondWith(fetch(e.request).catch(function () {
-        return new Response('<!DOCTYPE html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><body style="font-family:sans-serif;background:#000207;color:#f8fafc;text-align:center;padding:60px 20px"><h2 style="color:#f59e0b">لا يوجد اتصال بالإنترنت</h2><p>تحتاج المنظومة إلى اتصال لحفظ الحضور. حاول مجدداً عند عودة الاتصال.</p></body></html>',
+        return new Response('<!DOCTYPE html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><body style="font-family:sans-serif;background:#000207;color:#f8fafc;text-align:center;padding:60px 20px"><h2 style="color:#f59e0b">\u0644\u0627 \u064a\u0648\u062c\u062f \u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a</h2><p>\u062a\u062d\u062a\u0627\u062c \u0627\u0644\u0645\u0646\u0638\u0648\u0645\u0629 \u0625\u0644\u0649 \u0627\u062a\u0635\u0627\u0644 \u0644\u062d\u0641\u0638 \u0627\u0644\u062d\u0636\u0648\u0631. \u062d\u0627\u0648\u0644 \u0645\u062c\u062f\u062f\u0627\u064b \u0639\u0646\u062f \u0639\u0648\u062f\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644.</p></body></html>',
             { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
     }));
 });
