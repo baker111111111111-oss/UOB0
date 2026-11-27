@@ -21,8 +21,12 @@ app.config.update(
 )
 
 HEAD_OFFICIAL_EMAIL = "head.dept@cofarts.uobaghdad.edu.iq"
+DOCTOR_OFFICIAL_EMAIL = "doctor1@cofarts.uobaghdad.edu.iq"
+DOCTOR_OFFICIAL_NAME = "\u0623\u0633\u062a\u0627\u0630 \u0627\u0644\u0645\u0627\u062f\u0629"
+
 DB_NAME = os.environ.get('DB_PATH', 'cofarts_system.db')
 HEAD_PASSWORD = os.environ.get('HEAD_PASSWORD')
+DOCTOR_PASSWORD = os.environ.get('DOCTOR_PASSWORD') or os.environ.get('DEFAULT_DOCTOR_PASSWORD')
 REGISTER_CODE = os.environ.get('REGISTER_CODE')
 
 def init_db():
@@ -65,9 +69,16 @@ def init_db():
     if HEAD_PASSWORD:
         cursor.execute(
             'INSERT OR REPLACE INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?)',
-            (HEAD_OFFICIAL_EMAIL.lower(), '\u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645', generate_password_hash(HEAD_PASSWORD), 'head'))
+            (HEAD_OFFICIAL_EMAIL.lower(), '\u0645\u0642\u0631\u0631 \u0627\u0644\u0642\u0633\u0645', generate_password_hash(HEAD_PASSWORD.strip()), 'head'))
     else:
         print('WARNING: HEAD_PASSWORD is not set; the department head cannot log in.')
+
+    if DOCTOR_PASSWORD and DOCTOR_OFFICIAL_EMAIL.lower() != HEAD_OFFICIAL_EMAIL.lower():
+        cursor.execute(
+            'INSERT OR IGNORE INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?)',
+            (DOCTOR_OFFICIAL_EMAIL.lower(), DOCTOR_OFFICIAL_NAME.strip(), generate_password_hash(DOCTOR_PASSWORD.strip()), 'doctor')
+        )
+
     conn.commit()
     conn.close()
 
@@ -573,7 +584,7 @@ LOGIN_FAILS = {}
 @app.route('/login', methods=['POST'])
 def login():
     email = (request.form.get('user_email') or '').strip().lower()
-    password = request.form.get('password') or ''
+    password = (request.form.get('password') or '').strip()
 
     fails, last = LOGIN_FAILS.get(email, (0, 0))
     if time.time() - last > 300:
@@ -604,9 +615,10 @@ def register():
     if request.method == 'POST':
         name = (request.form.get('user_name') or '').strip()
         email = (request.form.get('user_email') or '').strip().lower()
-        password = request.form.get('password') or ''
-        code = request.form.get('code') or ''
-        if not REGISTER_CODE or not secrets.compare_digest(code.encode(), REGISTER_CODE.encode()):
+        password = (request.form.get('password') or '').strip()
+        code = (request.form.get('code') or '').strip()
+        expected_code = (REGISTER_CODE or '').strip()
+        if not expected_code or not secrets.compare_digest(code.encode(), expected_code.encode()):
             error = '\u0631\u0645\u0632 \u0627\u0644\u062a\u0633\u062c\u064a\u0644 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d'
         elif not name or '@' not in email or email == HEAD_OFFICIAL_EMAIL.lower():
             error = '\u0623\u062f\u062e\u0644 \u0627\u0644\u0627\u0633\u0645 \u0648\u0628\u0631\u064a\u062f\u0627\u064b \u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0627\u064b \u0635\u062d\u064a\u062d\u0627\u064b'
@@ -1028,20 +1040,25 @@ def admin_accounts():
                 bad += 1
                 continue
             seen.add(email)
-            pw = ''.join(secrets.choice(PW_CHARS) for _ in range(10))
             conn = sqlite3.connect(DB_NAME)
             try:
-                ex = conn.execute('SELECT role FROM users WHERE email = ?', (email,)).fetchone()
-                if ex and ex[0] != 'doctor':
-                    bad += 1
+                ex = conn.execute('SELECT name, role FROM users WHERE email = ?', (email,)).fetchone()
+                if ex:
+                    if ex[1] != 'doctor':
+                        bad += 1
+                        continue
+                    if name != ex[0]:
+                        conn.execute('UPDATE users SET name = ? WHERE email = ?', (name, email))
+                        conn.commit()
+                    out.append((name, email, '\u0645\u062d\u0641\u0648\u0638\u0629 \u0645\u0633\u0628\u0642\u0627\u064b', '\u0645\u0648\u062c\u0648\u062f \u0645\u0633\u0628\u0642\u0627\u064b'))
                     continue
-                conn.execute('INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?) '
-                             'ON CONFLICT(email) DO UPDATE SET name = excluded.name, password_hash = excluded.password_hash',
+                pw = ''.join(secrets.choice(PW_CHARS) for _ in range(10))
+                conn.execute('INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, ?)',
                              (email, name, generate_password_hash(pw), 'doctor'))
                 conn.commit()
+                out.append((name, email, pw, '\u062d\u0633\u0627\u0628 \u062c\u062f\u064a\u062f'))
             finally:
                 conn.close()
-            out.append((name, email, pw, '\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u062c\u062f\u064a\u062f\u0629' if ex else '\u062d\u0633\u0627\u0628 \u062c\u062f\u064a\u062f'))
         if out:
             return send_file(build_accounts_xlsx(out), as_attachment=True, download_name='accounts.xlsx',
                              mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -1057,10 +1074,10 @@ def admin_accounts():
     {% if err %}<div style="background:rgba(239,68,68,0.2); border-right:5px solid #ef4444; padding:12px; border-radius:10px; margin-bottom:15px; color:#fca5a5;">\u26a0\ufe0f {{ err }}</div>{% endif %}
     <div style="background:rgba(14,24,46,0.9); padding:22px; border-radius:20px; border:1px solid rgba(255,255,255,0.12); margin-bottom:20px;">
         <h3 style="color:var(--accent-gold); margin-top:0;">\u0625\u0646\u0634\u0627\u0621 \u062d\u0633\u0627\u0628\u0627\u062a \u062c\u0627\u0647\u0632\u0629</h3>
-        <p style="color:var(--text-muted); line-height:1.8;">\u0627\u0643\u062a\u0628 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631 \u0627\u0633\u0645 \u0627\u0644\u0623\u0633\u062a\u0627\u0630 \u0648\u0628\u0631\u064a\u062f\u0647. \u062a\u064f\u0646\u0634\u0623 \u0644\u0643\u0644 \u0623\u0633\u062a\u0627\u0630 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0639\u0634\u0648\u0627\u0626\u064a\u0629\u060c \u0648\u062a\u0646\u0632\u0644 \u0644\u0643 \u0641\u064a \u0645\u0644\u0641 Excel \u0645\u0631\u0629 \u0648\u0627\u062d\u062f\u0629 \u0641\u0642\u0637. \u0625\u0646 \u0643\u062a\u0628\u062a \u0628\u0631\u064a\u062f\u0627\u064b \u0645\u0648\u062c\u0648\u062f\u0627\u064b \u062a\u064f\u0639\u0627\u062f \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631\u0647.</p>
+        <p style="color:var(--text-muted); line-height:1.8;">\u0627\u0643\u062a\u0628 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631 \u0627\u0633\u0645 \u0627\u0644\u0623\u0633\u062a\u0627\u0630 \u0648\u0628\u0631\u064a\u062f\u0647. \u062a\u064f\u0646\u0634\u0623 \u0644\u0643\u0644 \u0623\u0633\u062a\u0627\u0630 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0639\u0634\u0648\u0627\u0626\u064a\u0629\u060c \u0648\u062a\u0646\u0632\u0644 \u0644\u0643 \u0641\u064a \u0645\u0644\u0641 Excel \u0645\u0631\u0629 \u0648\u0627\u062d\u062f\u0629 \u0641\u0642\u0637. \u0625\u0646 \u0643\u062a\u0628\u062a \u0628\u0631\u064a\u062f\u0627\u064b \u0645\u0648\u062c\u0648\u062f\u0627\u064b \u064a\u0628\u0642\u0649 \u062d\u0633\u0627\u0628\u0647 \u062f\u0648\u0646 \u0645\u0633\u062d \u0623\u0648 \u062a\u063a\u064a\u064a\u0631 \u0644\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631\u0647.</p>
         <form method="POST">
             <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-            <textarea name="lines" class="input-field" rows="7" placeholder="\u062f. \u0623\u062d\u0645\u062f \u0639\u0644\u064a\u060c ahmed@cofarts.uobaghdad.edu.iq" required></textarea>
+            <textarea name="lines" class="input-field" rows="7" placeholder="\u0627\u0643\u062a\u0628 \u0627\u0644\u0627\u0633\u0645 \u0648\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0641\u064a \u0643\u0644 \u0633\u0637\u0631" required></textarea>
             <button type="submit" class="btn-action">\u0625\u0646\u0634\u0627\u0621 \u0648\u062a\u0646\u0632\u064a\u0644 \u0645\u0644\u0641 \u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a</button>
         </form>
     </div>
